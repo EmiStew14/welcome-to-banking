@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   // be sure to include its associated Products
   Category.findAll({
     include: [ Product]
-  }).then((categories) => {
+  }).then(categories => {
     res.json(categories)
   })
 });
@@ -21,7 +21,7 @@ const params = req.params.id;
 Category.findOne({
   where: {id:params},
   include: [ Product]
-}).then((categories) => {
+}).then(categories => {
   res.json(categories)
 })
 })
@@ -29,8 +29,9 @@ Category.findOne({
 router.post('/', (req, res) => {
   // create a new category
   Category.create({
-    category_name: req.params.category_name,
-    include: [Product]
+    category_name: req.body.category_name,
+  }).then(tags =>{
+    res.json(tags)
   })
 });
 
@@ -41,21 +42,46 @@ router.put('/:id', (req, res) => {
 
   Category.update(
     {
-      category_name: req.params.category_name
+      category_name: req.body.category_name
     },
     {
       where: {
         id: params
       }
     }
-  ).then((categories) => {
+  ).then(categories => {
+    if (!categories) {
+      res.status(404).json({ message: 'No Category found with this id' });
+      return;
+    }
     res.json(categories)
   })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  const params = req.params.id;
+  Category.destroy({
+    where: {
+      id: params
+    }
+  })
+  .then(categories =>{
+    if (!categories) {
+      res.status(404).json({ message: 'No category found with this id' });
+      return;
+    }
+    res.json(categories)
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
