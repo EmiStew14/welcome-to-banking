@@ -36,6 +36,22 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  const params = req.params.id;
+
+
+  Category.update(
+    {
+      category_name: req.params.category_name
+    },
+    {
+      where: {
+        id: params
+      }
+    }
+  ).then((categories) => {
+    res.json(categories)
+  })
+
 });
 
 router.delete('/:id', (req, res) => {
