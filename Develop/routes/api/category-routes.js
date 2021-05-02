@@ -30,8 +30,8 @@ router.post('/', (req, res) => {
   // create a new category
   Category.create({
     category_name: req.body.category_name,
-  }).then(tags =>{
-    res.json(tags)
+  }).then(categories =>{
+    res.json(categories)
   })
 });
 
