@@ -40,10 +40,7 @@ router.put('/:id', (req, res) => {
   const params = req.params.id;
 
 
-  Category.update(
-    {
-      category_name: req.body.category_name
-    },
+  Category.update(req.body,
     {
       where: {
         id: params
