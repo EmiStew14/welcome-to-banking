@@ -26,8 +26,9 @@
   > npm i
 
   ## Usage:
-    https://drive.google.com/file/d/1biSsB_uzaYML_ElYRfHGUm3JoVae55S9/view
+   ( https://drive.google.com/file/d/1WPKUsuHKn6VVUR1sIDu-Sruv3zW-1ldw/view ) pt.1
 
+ ( https://drive.google.com/file/d/1bg0OpGXIo7vlAcCgnu80qPEIt1TMAH1M/view ) pt.2
   ## Languages:
   JavaScript,Node.js,Sequelize, MySQL, ORM
   
